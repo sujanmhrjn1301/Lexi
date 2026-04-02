@@ -199,7 +199,7 @@ if engine is not None and raw_llm is not None:
 
                 # 3. Render Answer
                 st.markdown(answer)
-                st.caption(Lexi can make mistakes. Consult a lawyer for official advice.")
+                st.caption("Lexi can make mistakes. Consult a lawyer for official advice.")
                 
                 # 4. Save to session state
                 st.session_state.messages.append({"role": "assistant", "content": answer})
