@@ -7,6 +7,7 @@ from datetime import datetime
 
 from dotenv import load_dotenv
 
+
 import streamlit as st
 from langchain_core._api.deprecation import LangChainDeprecationWarning
 from langchain_core.prompts import PromptTemplate
@@ -29,6 +30,12 @@ try:
 except ImportError:
     # Fallback for environments where Chroma lives in langchain_community.
     from langchain_community.vectorstores import Chroma
+import sys
+try:
+    __import__('pysqlite3')
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass # This allows it to still run on your Windows machine
 
 # Suppress Pydantic/LangChain warning noise from compatibility fallbacks.
 warnings.filterwarnings("ignore", category=UserWarning, module="pydantic")
