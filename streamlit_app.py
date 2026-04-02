@@ -66,7 +66,7 @@ DB_DIR = "./nepal_law_db"
 REVIEW_JSON_PATH = "./processed_json/review_queue.json"
 os.makedirs("./processed_json", exist_ok=True)
 
-st.title("Nepal Law AI")
+st.title("Lexi: The Legal Guide")
 st.markdown("Accessible legal information for every citizen.")
 st.sidebar.header("System Status")
 
@@ -199,7 +199,7 @@ if engine is not None and raw_llm is not None:
 
                 # 3. Render Answer
                 st.markdown(answer)
-                st.caption("AI-generated summary. Consult a lawyer for official advice.")
+                st.caption(Lexi can make mistakes. Consult a lawyer for official advice.")
                 
                 # 4. Save to session state
                 st.session_state.messages.append({"role": "assistant", "content": answer})
