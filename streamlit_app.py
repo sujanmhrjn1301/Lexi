@@ -1,4 +1,10 @@
-# Version 3.3 - 768-Dim Compatible (OpenAI/Local DB)
+import sys
+try:
+    __import__('pysqlite3')
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass # This allows it to still run on your Windows machine
+
 import json
 import os
 import time
@@ -30,12 +36,7 @@ try:
 except ImportError:
     # Fallback for environments where Chroma lives in langchain_community.
     from langchain_community.vectorstores import Chroma
-import sys
-try:
-    __import__('pysqlite3')
-    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-except ImportError:
-    pass # This allows it to still run on your Windows machine
+
 
 # Suppress Pydantic/LangChain warning noise from compatibility fallbacks.
 warnings.filterwarnings("ignore", category=UserWarning, module="pydantic")
