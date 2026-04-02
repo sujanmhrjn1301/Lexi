@@ -167,37 +167,52 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # --- 6. Logic & Input ---
-if user_query := st.chat_input("Ask about any law..."):
-    st.session_state.messages.append({"role": "user", "content": user_query})
-    with st.chat_message("user"):
-        st.markdown(user_query)
+# ONLY RUN IF ENGINE IS READY
+if engine is not None and raw_llm is not None:
+    if user_query := st.chat_input("Ask about any law..."):
+        # 1. Store and display user message
+        st.session_state.messages.append({"role": "user", "content": user_query})
+        with st.chat_message("user"):
+            st.markdown(user_query)
 
-    with st.chat_message("assistant"):
-        query_lower = user_query.lower().strip()
-        law_triggers = ["law", "nepal", "punishment", "jail", "crime", "harass", "illegal", "rights", "constitution"]
-        is_legal_query = any(word in query_lower for word in law_triggers)
+        # 2. Assistant Response Logic
+        with st.chat_message("assistant"):
+            query_lower = user_query.lower().strip()
+            law_triggers = ["law", "nepal", "punishment", "jail", "crime", "harass", "illegal", "rights", "constitution"]
+            is_legal_query = any(word in query_lower for word in law_triggers)
 
-        try:
-            start_time = time.time()
-            if not is_legal_query:
-                with st.spinner("Responding..."):
-                    response = raw_llm.invoke(user_query)
-                    answer = response.content
-            else:
-                with st.spinner("Searching legal database..."):
-                    response = engine.invoke({"query": user_query})
-                    answer = response["result"]
-                    save_to_review_queue(user_query, answer, "Nepal Law Database")
+            try:
+                start_time = time.time()
+                
+                if not is_legal_query:
+                    with st.spinner("Responding..."):
+                        # Use invoke for modern LangChain compatibility
+                        response = raw_llm.invoke(user_query)
+                        answer = response.content
+                else:
+                    with st.spinner("Searching legal database..."):
+                        # Ensure we are passing the correct dictionary to the chain
+                        response = engine.invoke({"query": user_query})
+                        answer = response["result"]
+                        save_to_review_queue(user_query, answer, "Nepal Law Database")
 
-            st.markdown(answer)
-            st.caption("AI-generated summary. Consult a lawyer for official advice.")
-            st.session_state.messages.append({"role": "assistant", "content": answer})
+                # 3. Render Answer
+                st.markdown(answer)
+                st.caption("AI-generated summary. Consult a lawyer for official advice.")
+                
+                # 4. Save to session state
+                st.session_state.messages.append({"role": "assistant", "content": answer})
 
-            elapsed = round(time.time() - start_time, 2)
-            st.sidebar.write(f"Response time: {elapsed}s")
+                elapsed = round(time.time() - start_time, 2)
+                st.sidebar.write(f"Response time: {elapsed}s")
 
-        except Exception as e:
-            st.error(f"Error: {e}")
+            except Exception as e:
+                st.error(f"Logic Error: {e}")
+                st.info("This often happens if the Vector Database or API Key is not configured correctly.")
 
+else:
+    st.warning("⚠️ Lexi is currently offline. Please ensure the database and API keys are set up in the sidebar.")
+
+# --- Footer ---
 st.sidebar.markdown("---")
 st.sidebar.info("Built for BSIT Project - Nepal Law RAG System")

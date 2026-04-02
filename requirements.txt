@@ -11,4 +11,3 @@ chromadb
 pypdf
 protobuf~=3.19.0
 pysqlite3-binary
-

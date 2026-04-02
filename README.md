@@ -2,8 +2,6 @@
 
 An intelligent legal assistance application that provides accessible legal information about Nepali laws. This app uses AI-powered retrieval-augmented generation (RAG) to answer questions about Nepal's legal system.
 
-**Creator:** Sujan Maharjan
-
 ## Features
 
 ✨ **AI-Powered Legal Queries**
