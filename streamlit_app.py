@@ -45,7 +45,7 @@ warnings.filterwarnings("ignore", category=LangChainDeprecationWarning)
 load_dotenv()
 
 # --- 1. Page Configuration & API Setup ---
-st.set_page_config(page_title="Nepal Law AI", page_icon="NL", layout="centered")
+st.set_page_config(page_title="Lexi", page_icon="NL", layout="centered")
 
 # Fetch API Key
 try:
@@ -170,7 +170,7 @@ for message in st.session_state.messages:
 # --- 6. Logic & Input ---
 # ONLY RUN IF ENGINE IS READY
 if engine is not None and raw_llm is not None:
-    if user_query := st.chat_input("Ask about any law..."):
+    if user_query := st.chat_input("Ask Lexi..."):
         # 1. Store and display user message
         st.session_state.messages.append({"role": "user", "content": user_query})
         with st.chat_message("user"):
