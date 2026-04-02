@@ -216,4 +216,4 @@ else:
 
 # --- Footer ---
 st.sidebar.markdown("---")
-st.sidebar.info("Built for BSIT Project - Nepal Law RAG System")
+st.sidebar.info("Nepal Law AI: Lexi")
