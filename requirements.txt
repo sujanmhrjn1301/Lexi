@@ -9,3 +9,4 @@ langchain-community
 sentence-transformers
 chromadb
 pypdf
+protobuf~=3.19.0
