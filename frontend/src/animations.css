@@ -1,0 +1,184 @@
+/* Button animations */
+@keyframes buttonClick {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide in from left */
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Slide in from right */
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Shake animation */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-2px);
+  }
+  75% {
+    transform: translateX(2px);
+  }
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Apply animations to elements */
+.animate-click {
+  animation: buttonClick 0.3s ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+.hover-scale {
+  transition: transform 0.2s ease-out;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-scale:active {
+  animation: buttonClick 0.2s ease-out;
+}
+
+/* Smooth transitions */
+.smooth-transition {
+  transition: all 0.3s ease-out;
+}
+
+.smooth-bg-transition {
+  transition: background-color 0.2s ease-out;
+}
+
+.smooth-transform-transition {
+  transition: transform 0.2s ease-out, background-color 0.2s ease-out;
+}
+
+/* Input focus animation */
+.input-focus {
+  transition: all 0.2s ease-out;
+}
+
+.input-focus:focus {
+  transform: scale(1.01);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Chat item hover */
+.chat-item-hover {
+  transition: all 0.2s ease-out;
+}
+
+.chat-item-hover:hover {
+  transform: translateX(4px);
+}
+
+/* Icon spin animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Logo hover effect */
+.logo-hover {
+  transition: transform 0.3s ease-out;
+}
+
+.logo-hover:hover {
+  transform: scale(1.1) rotate(10deg);
+}
+
+/* Message appearance */
+.message-fade-in {
+  animation: fadeIn 0.4s ease-in;
+}
+
+.user-message {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.assistant-message {
+  animation: slideInLeft 0.3s ease-out;
+}
