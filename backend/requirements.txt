@@ -11,6 +11,6 @@ cors==1.0.1
 langchain==0.1.0
 langchain-openai==0.0.2
 langchain-huggingface>=1.2.1
-langchain-chroma==0.1.0
+langchain-chroma>=1.1.0
 pysqlite3-binary==3.45.1
 sentence-transformers==2.2.2
